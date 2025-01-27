@@ -30,7 +30,7 @@ class Q1:
         self._summary()
 
     def _clear_data(self):
-        mean_price = self._data["price"].mean()
+        mean_price = self._data.groupby('category')['price'].transform('mean')
         self._data["price"] = self._data["price"].fillna(mean_price)
         mode_category = self._data["category"].mode()[0]
         self._data["category"] = self._data["category"].fillna(mode_category)
